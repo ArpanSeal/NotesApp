@@ -31,6 +31,10 @@
   opacity: 0;
 }
 
+.togglerIcon {
+  background-image: url('../img/navbarToggler.png') !important;
+}
+
 #search{
     width: 300px;
 }
