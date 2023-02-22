@@ -4,7 +4,7 @@ let charLimit = document.getElementById("charLimit");
 let limit = 200;
 let addTitle = document.getElementById("addTitle");
 let charLimitTitle = document.getElementById("charLimitTitle");
-let limitTitle = 10;
+let limitTitle = 15;
 charLimit.textContent = 0 + "/" + limit;
 charLimitTitle.textContent = 0 + "/" + limitTitle;
 addTxt.addEventListener("input", function(){
