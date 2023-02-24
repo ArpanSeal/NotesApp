@@ -15,13 +15,17 @@ addTxt.addEventListener("input", function () {
   let txtLength = addTxt.value.length;
   let titleLength = addTitle.value.length;
   charLimit.textContent = txtLength + "/" + limit;
-  (txtLength === 0 && titleLength === 0) ? (saveBtn.disabled = true) : (saveBtn.disabled = false);
+  txtLength === 0 && titleLength === 0
+    ? (saveBtn.disabled = true)
+    : (saveBtn.disabled = false);
 });
 addTitle.addEventListener("input", function () {
   let txtLength = addTxt.value.length;
   let titleLength = addTitle.value.length;
   charLimitTitle.textContent = titleLength + "/" + limitTitle;
-  (txtLength === 0 && titleLength === 0) ? (saveBtn.disabled = true) : (saveBtn.disabled = false);
+  txtLength === 0 && titleLength === 0
+    ? (saveBtn.disabled = true)
+    : (saveBtn.disabled = false);
 });
 
 let addBtn = document.getElementById("addBtn");
