@@ -7,14 +7,20 @@ let charLimitTitle = document.getElementById("charLimitTitle");
 let limitTitle = 15;
 charLimit.textContent = 0 + "/" + limit;
 charLimitTitle.textContent = 0 + "/" + limitTitle;
-addTxt.addEventListener("input", function(){
+
+let saveBtn = document.getElementById("addBtn");
+saveBtn.disabled = true;
+
+addTxt.addEventListener("input", function () {
   let txtLength = addTxt.value.length;
   charLimit.textContent = txtLength + "/" + limit;
-})
-addTitle.addEventListener("input", function(){
+  txtLength !== 0 ? (saveBtn.disabled = false) : (saveBtn.disabled = true);
+});
+addTitle.addEventListener("input", function () {
   let titleLength = addTitle.value.length;
   charLimitTitle.textContent = titleLength + "/" + limitTitle;
-})
+  titleLength !== 0 ? (saveBtn.disabled = false) : (saveBtn.disabled = true);
+});
 
 let addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", function () {
@@ -28,7 +34,7 @@ addBtn.addEventListener("click", function () {
   }
   let titleValue = addTitle.value;
   let txtValue = addTxt.value;
-  notesObj.push({titleValue, txtValue});
+  notesObj.push({ titleValue, txtValue });
 
   localStorage.setItem("notes", JSON.stringify(notesObj));
   addTxt.value = "";
@@ -37,7 +43,6 @@ addBtn.addEventListener("click", function () {
   charLimitTitle.textContent = 0 + "/" + limitTitle;
   showNotes();
 });
-
 
 function showNotes() {
   let notes = localStorage.getItem("notes");
@@ -48,9 +53,10 @@ function showNotes() {
   }
   let html = "";
   notesObj.forEach(function (element, index) {
-    html += 
-    `<div class="card noteCard m-2" id="card-bg"
-        style="background: url('./img/note${index % 5}.png') no-repeat center center/cover;">
+    html += `<div class="card noteCard m-2" id="card-bg"
+        style="background: url('./img/note${
+          index % 5
+        }.png') no-repeat center center/cover;">
         <div class="card-body" id="noteBody">
             <br>
             <h4 class="card-title" id="noteTitle">${element.titleValue}</h4>
@@ -59,19 +65,15 @@ function showNotes() {
         </div>
     </div>`;
   });
-  let notesElm = document.getElementById('notes');
-  if(notesObj.length != 0)
-  {
+  let notesElm = document.getElementById("notes");
+  if (notesObj.length != 0) {
     notesElm.innerHTML = html;
-  }
-  else{
-    notesElm.innerHTML = `<p class="d-flex justify-content-center align-items-center" style="font-weight: 400; font-size: 1rem; color: grey; font-family: 'Open Sans', sans-serif;">There is no note to display at this time</p>`
+  } else {
+    notesElm.innerHTML = `<p class="d-flex justify-content-center align-items-center" style="font-weight: 400; font-size: 1rem; color: grey; font-family: 'Open Sans', sans-serif;">There is no note to display at this time</p>`;
   }
 }
 
-
-function deleteNote(index)
-{
+function deleteNote(index) {
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
@@ -85,21 +87,21 @@ function deleteNote(index)
 }
 
 let search = document.getElementById("search");
-search.addEventListener("input", function(e){
+search.addEventListener("input", function (e) {
   let inputVal = search.value.toLowerCase();
   let noteCards = document.getElementsByClassName("noteCard");
-  Array.from(noteCards).forEach(function(element){
+  Array.from(noteCards).forEach(function (element) {
     let cardTitle = element.getElementsByClassName("card-title")[0].innerText;
     let cardText = element.getElementsByClassName("card-text")[0].innerText;
-    if(cardTitle.toLowerCase().includes(inputVal) || cardText.toLowerCase().includes(inputVal))
-    {
-      console.log('true');
+    if (
+      cardTitle.toLowerCase().includes(inputVal) ||
+      cardText.toLowerCase().includes(inputVal)
+    ) {
+      console.log("true");
       element.style.display = "block";
-    }
-    else
-    {
-      console.log('false');
+    } else {
+      console.log("false");
       element.style.display = "none";
     }
-  })
-})
+  });
+});
