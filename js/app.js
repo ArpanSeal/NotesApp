@@ -47,6 +47,7 @@ addBtn.addEventListener("click", function () {
   addTitle.value = "";
   charLimit.textContent = 0 + "/" + limit;
   charLimitTitle.textContent = 0 + "/" + limitTitle;
+  saveBtn.disabled = true;
   showNotes();
 });
 
